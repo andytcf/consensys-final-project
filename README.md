@@ -1,4 +1,6 @@
-# Decentralized Housing Marketplace
+# Web3 Realty
+
+Decentralized marketplace for trading property and real estate
 
 ## Features
 

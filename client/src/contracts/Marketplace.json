@@ -1,0 +1,552 @@
+{
+  "contractName": "Marketplace",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/andytcf/consensys-final-project/contracts/Marketplace.sol\":\"Marketplace\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/andytcf/consensys-final-project/contracts/Marketplace.sol\":{\"keccak256\":\"0x930c9d87aae8a5aea8e50e2e8129932656fc34a1bc168ba866bb7639b22233a9\",\"urls\":[\"bzz-raw://48fc3def16a7b2332048418588594fd24467e83b4c4d5321fc2d0053e66a33bd\",\"dweb:/ipfs/QmeBFKqs1HTAX62NM9QCjnE5dG3WySNiVfraT6aGtAdUsd\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212204edca6f78ac21eb5fe4d260180670db5e377758626c97ceed12cfd1b645a6d1c64736f6c63430006020033",
+  "deployedBytecode": "0x6080604052600080fdfea26469706673582212204edca6f78ac21eb5fe4d260180670db5e377758626c97ceed12cfd1b645a6d1c64736f6c63430006020033",
+  "sourceMap": "25:223:1:-:0;;;219:27;8:9:-1;5:2;;;30:1;27;20:12;5:2;219:27:1;25:223;;;;;;",
+  "deployedSourceMap": "25:223:1:-:0;;;;;",
+  "source": "pragma solidity ^0.6.2;\n\ncontract Marketplace {\n\n  struct Storefront {\n    string name;\n    address owner;\n    uint256 itemCount;\n  }\n\n  struct Listing {\n    address owner;\n    bool isAuction;\n    uint256 price;\n  }\n\n  constructor() public {\n\n  }\n}",
+  "sourcePath": "/Users/andytcf/consensys-final-project/contracts/Marketplace.sol",
+  "ast": {
+    "absolutePath": "/Users/andytcf/consensys-final-project/contracts/Marketplace.sol",
+    "exportedSymbols": {
+      "Marketplace": [
+        349
+      ]
+    },
+    "id": 350,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 330,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 349,
+        "linearizedBaseContracts": [
+          349
+        ],
+        "name": "Marketplace",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Marketplace.Storefront",
+            "id": 337,
+            "members": [
+              {
+                "constant": false,
+                "id": 332,
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 337,
+                "src": "75:11:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 331,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "75:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 334,
+                "name": "owner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 337,
+                "src": "92:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 333,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "92:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 336,
+                "name": "itemCount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 337,
+                "src": "111:17:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 335,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "111:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Storefront",
+            "nodeType": "StructDefinition",
+            "scope": 349,
+            "src": "51:82:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Marketplace.Listing",
+            "id": 344,
+            "members": [
+              {
+                "constant": false,
+                "id": 339,
+                "name": "owner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 344,
+                "src": "158:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 338,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "158:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 341,
+                "name": "isAuction",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 344,
+                "src": "177:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 340,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "177:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 343,
+                "name": "price",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 344,
+                "src": "197:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 342,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "197:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Listing",
+            "nodeType": "StructDefinition",
+            "scope": 349,
+            "src": "137:78:1",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 347,
+              "nodeType": "Block",
+              "src": "240:6:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 348,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 345,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "230:2:1"
+            },
+            "returnParameters": {
+              "id": 346,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "240:0:1"
+            },
+            "scope": 349,
+            "src": "219:27:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 350,
+        "src": "25:223:1"
+      }
+    ],
+    "src": "0:248:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/andytcf/consensys-final-project/contracts/Marketplace.sol",
+    "exportedSymbols": {
+      "Marketplace": [
+        349
+      ]
+    },
+    "id": 350,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 330,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 349,
+        "linearizedBaseContracts": [
+          349
+        ],
+        "name": "Marketplace",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Marketplace.Storefront",
+            "id": 337,
+            "members": [
+              {
+                "constant": false,
+                "id": 332,
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 337,
+                "src": "75:11:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 331,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "75:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 334,
+                "name": "owner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 337,
+                "src": "92:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 333,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "92:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 336,
+                "name": "itemCount",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 337,
+                "src": "111:17:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 335,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "111:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Storefront",
+            "nodeType": "StructDefinition",
+            "scope": 349,
+            "src": "51:82:1",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Marketplace.Listing",
+            "id": 344,
+            "members": [
+              {
+                "constant": false,
+                "id": 339,
+                "name": "owner",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 344,
+                "src": "158:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 338,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "158:7:1",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 341,
+                "name": "isAuction",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 344,
+                "src": "177:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 340,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "177:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 343,
+                "name": "price",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 344,
+                "src": "197:13:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 342,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "197:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Listing",
+            "nodeType": "StructDefinition",
+            "scope": 349,
+            "src": "137:78:1",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 347,
+              "nodeType": "Block",
+              "src": "240:6:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 348,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 345,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "230:2:1"
+            },
+            "returnParameters": {
+              "id": 346,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "240:0:1"
+            },
+            "scope": 349,
+            "src": "219:27:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          }
+        ],
+        "scope": 350,
+        "src": "25:223:1"
+      }
+    ],
+    "src": "0:248:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.2+commit.bacdbe57.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.0",
+  "updatedAt": "2020-11-22T06:40:34.569Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
