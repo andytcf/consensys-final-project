@@ -5,27 +5,172 @@
       "inputs": [],
       "stateMutability": "nonpayable",
       "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "NewListing",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "listingId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "RemovedListing",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "listings",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "isAuction",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "listingTimestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "storefronts",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "itemCount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "image",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "postListing",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "removeListing",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "purchaseListing",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/andytcf/consensys-final-project/contracts/Marketplace.sol\":\"Marketplace\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/andytcf/consensys-final-project/contracts/Marketplace.sol\":{\"keccak256\":\"0x930c9d87aae8a5aea8e50e2e8129932656fc34a1bc168ba866bb7639b22233a9\",\"urls\":[\"bzz-raw://48fc3def16a7b2332048418588594fd24467e83b4c4d5321fc2d0053e66a33bd\",\"dweb:/ipfs/QmeBFKqs1HTAX62NM9QCjnE5dG3WySNiVfraT6aGtAdUsd\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea26469706673582212204edca6f78ac21eb5fe4d260180670db5e377758626c97ceed12cfd1b645a6d1c64736f6c63430006020033",
-  "deployedBytecode": "0x6080604052600080fdfea26469706673582212204edca6f78ac21eb5fe4d260180670db5e377758626c97ceed12cfd1b645a6d1c64736f6c63430006020033",
-  "sourceMap": "25:223:1:-:0;;;219:27;8:9:-1;5:2;;;30:1;27;20:12;5:2;219:27:1;25:223;;;;;;",
-  "deployedSourceMap": "25:223:1:-:0;;;;;",
-  "source": "pragma solidity ^0.6.2;\n\ncontract Marketplace {\n\n  struct Storefront {\n    string name;\n    address owner;\n    uint256 itemCount;\n  }\n\n  struct Listing {\n    address owner;\n    bool isAuction;\n    uint256 price;\n  }\n\n  constructor() public {\n\n  }\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.2+commit.bacdbe57\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"NewListing\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"listingId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"RemovedListing\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"listings\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"isAuction\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"listingTimestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"postListing\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"purchaseListing\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"removeListing\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"storefronts\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"name\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"itemCount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"image\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/andytcf/consensys-final-project/contracts/Marketplace.sol\":\"Marketplace\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/andytcf/consensys-final-project/contracts/Marketplace.sol\":{\"keccak256\":\"0x5646563d2cc4a86d9e67a785fc9792079fecc93161a40497a3e569e4f11fd795\",\"urls\":[\"bzz-raw://9b2f5cd8000c918d79d14425ca81cb74d11beb23cd175474d01d71fd0c9d9ca5\",\"dweb:/ipfs/QmRCNdEKbgN9KZBvKem7tqvY3obg1GvZN8VkrwKwaKSSMc\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506104b0806100206000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80634adf53511461005c57806351a86e131461007a5780636c3aedfb146100985780639ae6145b146101e5578063de74e57b14610207575b600080fd5b61006461028e565b6040518082815260200191505060405180910390f35b610082610293565b6040518082815260200191505060405180910390f35b6100c4600480360360208110156100ae57600080fd5b8101908080359060200190929190505050610298565b60405180806020018573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200184815260200180602001838103835287818151815260200191508051906020019080838360005b83811015610140578082015181840152602081019050610125565b50505050905090810190601f16801561016d5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101a657808201518184015260208101905061018b565b50505050905090810190601f1680156101d35780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b6101ed610418565b604051808215151515815260200191505060405180910390f35b6102336004803603602081101561021d57600080fd5b810190808035906020019092919050505061041d565b604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018415151515815260200183815260200182815260200194505050505060405180910390f35b600090565b600090565b6001602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103445780601f1061031957610100808354040283529160200191610344565b820191906000526020600020905b81548152906001019060200180831161032757829003601f168201915b5050505050908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690806002015490806003018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561040e5780601f106103e35761010080835404028352916020019161040e565b820191906000526020600020905b8154815290600101906020018083116103f157829003601f168201915b5050505050905084565b600090565b60006020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060000160149054906101000a900460ff1690806001015490806002015490508456fea2646970667358221220c77216648dcfd801c9ce91adccf805f9c17283e700dcc15c09626a6e54ab5efe64736f6c63430006020033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80634adf53511461005c57806351a86e131461007a5780636c3aedfb146100985780639ae6145b146101e5578063de74e57b14610207575b600080fd5b61006461028e565b6040518082815260200191505060405180910390f35b610082610293565b6040518082815260200191505060405180910390f35b6100c4600480360360208110156100ae57600080fd5b8101908080359060200190929190505050610298565b60405180806020018573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200184815260200180602001838103835287818151815260200191508051906020019080838360005b83811015610140578082015181840152602081019050610125565b50505050905090810190601f16801561016d5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101a657808201518184015260208101905061018b565b50505050905090810190601f1680156101d35780820380516001836020036101000a031916815260200191505b50965050505050505060405180910390f35b6101ed610418565b604051808215151515815260200191505060405180910390f35b6102336004803603602081101561021d57600080fd5b810190808035906020019092919050505061041d565b604051808573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018415151515815260200183815260200182815260200194505050505060405180910390f35b600090565b600090565b6001602052806000526040600020600091509050806000018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103445780601f1061031957610100808354040283529160200191610344565b820191906000526020600020905b81548152906001019060200180831161032757829003601f168201915b5050505050908060010160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1690806002015490806003018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561040e5780601f106103e35761010080835404028352916020019161040e565b820191906000526020600020905b8154815290600101906020018083116103f157829003601f168201915b5050505050905084565b600090565b60006020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060000160149054906101000a900460ff1690806001015490806002015490508456fea2646970667358221220c77216648dcfd801c9ce91adccf805f9c17283e700dcc15c09626a6e54ab5efe64736f6c63430006020033",
+  "sourceMap": "26:674:1:-:0;;;510:23;8:9:-1;5:2;;;30:1;27;20:12;5:2;510:23:1;26:674;;;;;;",
+  "deployedSourceMap": "26:674:1:-:0;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:674:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;647:51;;;:::i;:::-;;;;;;;;;;;;;;;;;;;539:47;;;:::i;:::-;;;;;;;;;;;;;;;;;;;457:46;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;457:46:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;457:46:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;457:46:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;592:49;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;411:40;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;411:40:1;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;647:51;690:4;647:51;:::o;539:47::-;578:4;539:47;:::o;457:46::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;592:49::-;633:4;592:49;:::o;411:40::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.6.2;\n\n\ncontract Marketplace {\n    event NewListing(uint listingId, address owner);\n    event RemovedListing(uint listingId, address owner);\n\n    struct Storefront {\n        string name;\n        address owner;\n        uint itemCount;\n        string image;\n    }\n\n    struct Listing {\n        address owner;\n        bool isAuction;\n        uint price;\n        uint listingTimestamp;\n    }\n\n    mapping(uint => Listing) public listings;\n    mapping(uint => Storefront) public storefronts;\n\n    constructor() public {}\n\n    function postListing() public returns (uint) {}\n\n    function removeListing() public returns (bool) {}\n\n    function purchaseListing() public returns (uint) {}\n}\n",
   "sourcePath": "/Users/andytcf/consensys-final-project/contracts/Marketplace.sol",
   "ast": {
     "absolutePath": "/Users/andytcf/consensys-final-project/contracts/Marketplace.sol",
     "exportedSymbols": {
       "Marketplace": [
-        349
+        81
       ]
     },
-    "id": 350,
+    "id": 82,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 330,
+        "id": 20,
         "literals": [
           "solidity",
           "^",
@@ -42,25 +187,169 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 349,
+        "id": 81,
         "linearizedBaseContracts": [
-          349
+          81
         ],
         "name": "Marketplace",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 26,
+            "name": "NewListing",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 25,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 22,
+                  "indexed": false,
+                  "name": "listingId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26,
+                  "src": "70:14:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 21,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "70:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 24,
+                  "indexed": false,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26,
+                  "src": "86:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 23,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "86:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "69:31:1"
+            },
+            "src": "53:48:1"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 32,
+            "name": "RemovedListing",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 31,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28,
+                  "indexed": false,
+                  "name": "listingId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 32,
+                  "src": "127:14:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 27,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "127:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30,
+                  "indexed": false,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 32,
+                  "src": "143:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 29,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "143:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "126:31:1"
+            },
+            "src": "106:52:1"
+          },
+          {
             "canonicalName": "Marketplace.Storefront",
-            "id": 337,
+            "id": 41,
             "members": [
               {
                 "constant": false,
-                "id": 332,
+                "id": 34,
                 "name": "name",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 337,
-                "src": "75:11:1",
+                "scope": 41,
+                "src": "192:11:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -68,10 +357,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 331,
+                  "id": 33,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "75:6:1",
+                  "src": "192:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -82,12 +371,12 @@
               },
               {
                 "constant": false,
-                "id": 334,
+                "id": 36,
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 337,
-                "src": "92:13:1",
+                "scope": 41,
+                "src": "213:13:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -95,10 +384,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 333,
+                  "id": 35,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "92:7:1",
+                  "src": "213:7:1",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -110,12 +399,12 @@
               },
               {
                 "constant": false,
-                "id": 336,
+                "id": 38,
                 "name": "itemCount",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 337,
-                "src": "111:17:1",
+                "scope": 41,
+                "src": "236:14:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -123,13 +412,40 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 335,
-                  "name": "uint256",
+                  "id": 37,
+                  "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "111:7:1",
+                  "src": "236:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 40,
+                "name": "image",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 41,
+                "src": "260:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 39,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "260:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "value": null,
@@ -138,22 +454,22 @@
             ],
             "name": "Storefront",
             "nodeType": "StructDefinition",
-            "scope": 349,
-            "src": "51:82:1",
+            "scope": 81,
+            "src": "164:115:1",
             "visibility": "public"
           },
           {
             "canonicalName": "Marketplace.Listing",
-            "id": 344,
+            "id": 50,
             "members": [
               {
                 "constant": false,
-                "id": 339,
+                "id": 43,
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 344,
-                "src": "158:13:1",
+                "scope": 50,
+                "src": "310:13:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -161,10 +477,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 338,
+                  "id": 42,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "158:7:1",
+                  "src": "310:7:1",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -176,12 +492,12 @@
               },
               {
                 "constant": false,
-                "id": 341,
+                "id": 45,
                 "name": "isAuction",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 344,
-                "src": "177:14:1",
+                "scope": 50,
+                "src": "333:14:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -189,10 +505,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 340,
+                  "id": 44,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "177:4:1",
+                  "src": "333:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -203,12 +519,12 @@
               },
               {
                 "constant": false,
-                "id": 343,
+                "id": 47,
                 "name": "price",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 344,
-                "src": "197:13:1",
+                "scope": 50,
+                "src": "357:10:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -216,10 +532,37 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 342,
-                  "name": "uint256",
+                  "id": 46,
+                  "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "197:7:1",
+                  "src": "357:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 49,
+                "name": "listingTimestamp",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 50,
+                "src": "377:21:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 48,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "377:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -231,19 +574,117 @@
             ],
             "name": "Listing",
             "nodeType": "StructDefinition",
-            "scope": 349,
-            "src": "137:78:1",
+            "scope": 81,
+            "src": "285:120:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "de74e57b",
+            "id": 54,
+            "name": "listings",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 81,
+            "src": "411:40:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Listing_$50_storage_$",
+              "typeString": "mapping(uint256 => struct Marketplace.Listing)"
+            },
+            "typeName": {
+              "id": 53,
+              "keyType": {
+                "id": 51,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "419:4:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "411:24:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Listing_$50_storage_$",
+                "typeString": "mapping(uint256 => struct Marketplace.Listing)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 52,
+                "name": "Listing",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 50,
+                "src": "427:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Listing_$50_storage_ptr",
+                  "typeString": "struct Marketplace.Listing"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "6c3aedfb",
+            "id": 58,
+            "name": "storefronts",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 81,
+            "src": "457:46:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Storefront_$41_storage_$",
+              "typeString": "mapping(uint256 => struct Marketplace.Storefront)"
+            },
+            "typeName": {
+              "id": 57,
+              "keyType": {
+                "id": 55,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "465:4:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "457:27:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Storefront_$41_storage_$",
+                "typeString": "mapping(uint256 => struct Marketplace.Storefront)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 56,
+                "name": "Storefront",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 41,
+                "src": "473:10:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Storefront_$41_storage_ptr",
+                  "typeString": "struct Marketplace.Storefront"
+                }
+              }
+            },
+            "value": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 347,
+              "id": 61,
               "nodeType": "Block",
-              "src": "240:6:1",
+              "src": "531:2:1",
               "statements": []
             },
             "documentation": null,
-            "id": 348,
+            "id": 62,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -251,42 +692,228 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 345,
+              "id": 59,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "230:2:1"
+              "src": "521:2:1"
             },
             "returnParameters": {
-              "id": 346,
+              "id": 60,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "240:0:1"
+              "src": "531:0:1"
             },
-            "scope": 349,
-            "src": "219:27:1",
+            "scope": 81,
+            "src": "510:23:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 67,
+              "nodeType": "Block",
+              "src": "584:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "functionSelector": "51a86e13",
+            "id": 68,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "postListing",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 63,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "559:2:1"
+            },
+            "returnParameters": {
+              "id": 66,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 65,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 68,
+                  "src": "578:4:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 64,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "578:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "577:6:1"
+            },
+            "scope": 81,
+            "src": "539:47:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 73,
+              "nodeType": "Block",
+              "src": "639:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "functionSelector": "9ae6145b",
+            "id": 74,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeListing",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 69,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "614:2:1"
+            },
+            "returnParameters": {
+              "id": 72,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 71,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 74,
+                  "src": "633:4:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 70,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "633:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "632:6:1"
+            },
+            "scope": 81,
+            "src": "592:49:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 79,
+              "nodeType": "Block",
+              "src": "696:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "functionSelector": "4adf5351",
+            "id": 80,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "purchaseListing",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 75,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "671:2:1"
+            },
+            "returnParameters": {
+              "id": 78,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 77,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 80,
+                  "src": "690:4:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 76,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "690:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "689:6:1"
+            },
+            "scope": 81,
+            "src": "647:51:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 350,
-        "src": "25:223:1"
+        "scope": 82,
+        "src": "26:674:1"
       }
     ],
-    "src": "0:248:1"
+    "src": "0:701:1"
   },
   "legacyAST": {
     "absolutePath": "/Users/andytcf/consensys-final-project/contracts/Marketplace.sol",
     "exportedSymbols": {
       "Marketplace": [
-        349
+        81
       ]
     },
-    "id": 350,
+    "id": 82,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 330,
+        "id": 20,
         "literals": [
           "solidity",
           "^",
@@ -303,25 +930,169 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 349,
+        "id": 81,
         "linearizedBaseContracts": [
-          349
+          81
         ],
         "name": "Marketplace",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
+            "anonymous": false,
+            "documentation": null,
+            "id": 26,
+            "name": "NewListing",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 25,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 22,
+                  "indexed": false,
+                  "name": "listingId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26,
+                  "src": "70:14:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 21,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "70:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 24,
+                  "indexed": false,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 26,
+                  "src": "86:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 23,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "86:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "69:31:1"
+            },
+            "src": "53:48:1"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 32,
+            "name": "RemovedListing",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 31,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 28,
+                  "indexed": false,
+                  "name": "listingId",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 32,
+                  "src": "127:14:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 27,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "127:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 30,
+                  "indexed": false,
+                  "name": "owner",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 32,
+                  "src": "143:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 29,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "143:7:1",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "126:31:1"
+            },
+            "src": "106:52:1"
+          },
+          {
             "canonicalName": "Marketplace.Storefront",
-            "id": 337,
+            "id": 41,
             "members": [
               {
                 "constant": false,
-                "id": 332,
+                "id": 34,
                 "name": "name",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 337,
-                "src": "75:11:1",
+                "scope": 41,
+                "src": "192:11:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -329,10 +1100,10 @@
                   "typeString": "string"
                 },
                 "typeName": {
-                  "id": 331,
+                  "id": 33,
                   "name": "string",
                   "nodeType": "ElementaryTypeName",
-                  "src": "75:6:1",
+                  "src": "192:6:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_string_storage_ptr",
                     "typeString": "string"
@@ -343,12 +1114,12 @@
               },
               {
                 "constant": false,
-                "id": 334,
+                "id": 36,
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 337,
-                "src": "92:13:1",
+                "scope": 41,
+                "src": "213:13:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -356,10 +1127,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 333,
+                  "id": 35,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "92:7:1",
+                  "src": "213:7:1",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -371,12 +1142,12 @@
               },
               {
                 "constant": false,
-                "id": 336,
+                "id": 38,
                 "name": "itemCount",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 337,
-                "src": "111:17:1",
+                "scope": 41,
+                "src": "236:14:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -384,13 +1155,40 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 335,
-                  "name": "uint256",
+                  "id": 37,
+                  "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "111:7:1",
+                  "src": "236:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 40,
+                "name": "image",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 41,
+                "src": "260:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 39,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "260:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
                   }
                 },
                 "value": null,
@@ -399,22 +1197,22 @@
             ],
             "name": "Storefront",
             "nodeType": "StructDefinition",
-            "scope": 349,
-            "src": "51:82:1",
+            "scope": 81,
+            "src": "164:115:1",
             "visibility": "public"
           },
           {
             "canonicalName": "Marketplace.Listing",
-            "id": 344,
+            "id": 50,
             "members": [
               {
                 "constant": false,
-                "id": 339,
+                "id": 43,
                 "name": "owner",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 344,
-                "src": "158:13:1",
+                "scope": 50,
+                "src": "310:13:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -422,10 +1220,10 @@
                   "typeString": "address"
                 },
                 "typeName": {
-                  "id": 338,
+                  "id": 42,
                   "name": "address",
                   "nodeType": "ElementaryTypeName",
-                  "src": "158:7:1",
+                  "src": "310:7:1",
                   "stateMutability": "nonpayable",
                   "typeDescriptions": {
                     "typeIdentifier": "t_address",
@@ -437,12 +1235,12 @@
               },
               {
                 "constant": false,
-                "id": 341,
+                "id": 45,
                 "name": "isAuction",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 344,
-                "src": "177:14:1",
+                "scope": 50,
+                "src": "333:14:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -450,10 +1248,10 @@
                   "typeString": "bool"
                 },
                 "typeName": {
-                  "id": 340,
+                  "id": 44,
                   "name": "bool",
                   "nodeType": "ElementaryTypeName",
-                  "src": "177:4:1",
+                  "src": "333:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_bool",
                     "typeString": "bool"
@@ -464,12 +1262,12 @@
               },
               {
                 "constant": false,
-                "id": 343,
+                "id": 47,
                 "name": "price",
                 "nodeType": "VariableDeclaration",
                 "overrides": null,
-                "scope": 344,
-                "src": "197:13:1",
+                "scope": 50,
+                "src": "357:10:1",
                 "stateVariable": false,
                 "storageLocation": "default",
                 "typeDescriptions": {
@@ -477,10 +1275,37 @@
                   "typeString": "uint256"
                 },
                 "typeName": {
-                  "id": 342,
-                  "name": "uint256",
+                  "id": 46,
+                  "name": "uint",
                   "nodeType": "ElementaryTypeName",
-                  "src": "197:7:1",
+                  "src": "357:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 49,
+                "name": "listingTimestamp",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 50,
+                "src": "377:21:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 48,
+                  "name": "uint",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "377:4:1",
                   "typeDescriptions": {
                     "typeIdentifier": "t_uint256",
                     "typeString": "uint256"
@@ -492,19 +1317,117 @@
             ],
             "name": "Listing",
             "nodeType": "StructDefinition",
-            "scope": 349,
-            "src": "137:78:1",
+            "scope": 81,
+            "src": "285:120:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "de74e57b",
+            "id": 54,
+            "name": "listings",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 81,
+            "src": "411:40:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Listing_$50_storage_$",
+              "typeString": "mapping(uint256 => struct Marketplace.Listing)"
+            },
+            "typeName": {
+              "id": 53,
+              "keyType": {
+                "id": 51,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "419:4:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "411:24:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Listing_$50_storage_$",
+                "typeString": "mapping(uint256 => struct Marketplace.Listing)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 52,
+                "name": "Listing",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 50,
+                "src": "427:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Listing_$50_storage_ptr",
+                  "typeString": "struct Marketplace.Listing"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "functionSelector": "6c3aedfb",
+            "id": 58,
+            "name": "storefronts",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 81,
+            "src": "457:46:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Storefront_$41_storage_$",
+              "typeString": "mapping(uint256 => struct Marketplace.Storefront)"
+            },
+            "typeName": {
+              "id": 57,
+              "keyType": {
+                "id": 55,
+                "name": "uint",
+                "nodeType": "ElementaryTypeName",
+                "src": "465:4:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "457:27:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Storefront_$41_storage_$",
+                "typeString": "mapping(uint256 => struct Marketplace.Storefront)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 56,
+                "name": "Storefront",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 41,
+                "src": "473:10:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Storefront_$41_storage_ptr",
+                  "typeString": "struct Marketplace.Storefront"
+                }
+              }
+            },
+            "value": null,
             "visibility": "public"
           },
           {
             "body": {
-              "id": 347,
+              "id": 61,
               "nodeType": "Block",
-              "src": "240:6:1",
+              "src": "531:2:1",
               "statements": []
             },
             "documentation": null,
-            "id": 348,
+            "id": 62,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
@@ -512,29 +1435,215 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 345,
+              "id": 59,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "230:2:1"
+              "src": "521:2:1"
             },
             "returnParameters": {
-              "id": 346,
+              "id": 60,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "240:0:1"
+              "src": "531:0:1"
             },
-            "scope": 349,
-            "src": "219:27:1",
+            "scope": 81,
+            "src": "510:23:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 67,
+              "nodeType": "Block",
+              "src": "584:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "functionSelector": "51a86e13",
+            "id": 68,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "postListing",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 63,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "559:2:1"
+            },
+            "returnParameters": {
+              "id": 66,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 65,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 68,
+                  "src": "578:4:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 64,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "578:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "577:6:1"
+            },
+            "scope": 81,
+            "src": "539:47:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 73,
+              "nodeType": "Block",
+              "src": "639:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "functionSelector": "9ae6145b",
+            "id": 74,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeListing",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 69,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "614:2:1"
+            },
+            "returnParameters": {
+              "id": 72,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 71,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 74,
+                  "src": "633:4:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 70,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "633:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "632:6:1"
+            },
+            "scope": 81,
+            "src": "592:49:1",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 79,
+              "nodeType": "Block",
+              "src": "696:2:1",
+              "statements": []
+            },
+            "documentation": null,
+            "functionSelector": "4adf5351",
+            "id": 80,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "purchaseListing",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 75,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "671:2:1"
+            },
+            "returnParameters": {
+              "id": 78,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 77,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 80,
+                  "src": "690:4:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 76,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "690:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "689:6:1"
+            },
+            "scope": 81,
+            "src": "647:51:1",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 350,
-        "src": "25:223:1"
+        "scope": 82,
+        "src": "26:674:1"
       }
     ],
-    "src": "0:248:1"
+    "src": "0:701:1"
   },
   "compiler": {
     "name": "solc",
@@ -542,7 +1651,7 @@
   },
   "networks": {},
   "schemaVersion": "3.3.0",
-  "updatedAt": "2020-11-22T06:40:34.569Z",
+  "updatedAt": "2020-11-28T05:39:45.744Z",
   "devdoc": {
     "methods": {}
   },
