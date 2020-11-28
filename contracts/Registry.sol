@@ -2,22 +2,30 @@ pragma solidity ^0.6.2;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Address.sol";
+import "@openzeppelin/contracts/utils/Pausable.sol";
 
 
-contract Registry is Ownable {
+contract Registry is Ownable, Pausable {
     using Address for address;
 
-    event RegistrationAdded(uint256 registryId, address owner);
-    event RegistrationRemoved(uint256 registryId);
-    event RegistrationTransferred(uint256 registryId, address from, address to);
+    event RegistrationAdded(bytes32 registryId, address owner);
+    event RegistrationRemoved(bytes32 registryId);
 
-    mapping(uint256 => Realty) public idToRealty;
-    mapping(uint256 => address) public ownerOf;
-    mapping(address => uint256[]) public realtyOwned;
-    mapping(uint256 => uint256) public indexOfRealty;
+    event RealtyTransferred(bytes32 registryId, address from, address to);
+    event RealtyPurchased(bytes32 registryId, uint price, address purchaser);
+    event RealtyPriceUpdated(bytes32 registryId, uint price);
+    event RealtyStateChanged(bytes32 registryId, RealtyState newState);
 
-    uint256 public totalRegistrations;
+    mapping(bytes32 => Realty) public idToRealty;
+    mapping(bytes32 => address) public ownerOf;
+    mapping(address => bytes32[]) public realtyOwned;
+    mapping(bytes32 => uint) public indexOfRealty;
+    mapping(address => uint) public balance;
+
+    uint public totalRegistrations;
     uint public registryCreated;
+
+    enum RealtyState {Available, NotAvailable}
 
     struct Realty {
         string streetName;
@@ -25,11 +33,18 @@ contract Registry is Ownable {
         string city;
         string country;
         string realtyType;
-        uint256 realtyId;
+        bytes32 registryId;
+        uint price;
+        RealtyState state;
     }
 
     constructor() public {
         registryCreated = now;
+    }
+
+    modifier onlyRealtyOwner(bytes32 registryId) {
+        require(ownerOf[registryId] == msg.sender, "Msg sender is not the owner of the Realty");
+        _;
     }
 
     function register(
@@ -38,61 +53,121 @@ contract Registry is Ownable {
         string memory city,
         string memory country,
         string memory realtyType,
-        uint256 realtyId,
+        uint price,
         address owner
-    ) public onlyOwner returns (uint256) {
-        require(ownerOf[realtyId] == address(0), "Realty already registered");
+    ) public whenNotPaused() onlyOwner() returns (bytes32) {
+        bytes32 registryId = keccak256(abi.encodePacked(msg.sender, streetName, realtyType, now));
 
-        Realty memory registeredRealty = Realty(streetName, postCode, city, country, realtyType, realtyId);
-        idToRealty[realtyId] = registeredRealty;
+        require(ownerOf[registryId] == address(0), "Realty already registered");
 
-        _register(realtyId, owner);
+        Realty memory registeredRealty = Realty(
+            streetName,
+            postCode,
+            city,
+            country,
+            realtyType,
+            registryId,
+            price,
+            RealtyState.NotAvailable
+        );
+        idToRealty[registryId] = registeredRealty;
 
-        return registeredRealty.realtyId;
+        _register(registryId, owner);
+
+        return registeredRealty.registryId;
     }
 
-    function deregister(uint256 registryId) public onlyOwner {
+    function deregister(bytes32 registryId) public whenNotPaused() onlyOwner() {
         require(ownerOf[registryId] != address(0), "Realty is not registered");
         _deregister(registryId);
         emit RegistrationRemoved(registryId);
     }
 
-    function transferOwner(
+    function purchaseRegistration(bytes32 registryId) public payable whenNotPaused() {
+        Realty memory currentRealty = idToRealty[registryId];
+        require(currentRealty.state == RealtyState.Available, "Realty is not for sale");
+        require(msg.value >= currentRealty.price, "Insufficient value sent to purchase realty");
+
+        address currentOwner = ownerOf[registryId];
+        address purchaser = msg.sender;
+        uint purchasedPrice = currentRealty.price;
+
+        _transferOwner(currentOwner, purchaser, registryId);
+
+        balance[currentOwner] = balance[currentOwner] + purchasedPrice;
+
+        if (msg.value > currentRealty.price) {
+            balance[purchaser] = balance[purchaser] + msg.value - currentRealty.price;
+        }
+
+        emit RealtyPurchased(registryId, purchasedPrice, purchaser);
+    }
+
+    function withdrawFunds() public {
+        require(balance[msg.sender] > 0, "Insufficient funds to withdraw");
+        uint amount = balance[msg.sender];
+        balance[msg.sender] = 0;
+        msg.sender.transfer(amount);
+    }
+
+    function changePrice(bytes32 registryId, uint price) public whenNotPaused() onlyRealtyOwner(registryId) returns (uint) {
+        require(price > 0, "Method called with an invalid price");
+        idToRealty[registryId].price = price;
+        emit RealtyPriceUpdated(registryId, price);
+        return price;
+    }
+
+    function setAvailable(bytes32 registryId) public whenNotPaused() onlyRealtyOwner(registryId) {
+        RealtyState currentState = idToRealty[registryId].state;
+        require(currentState != RealtyState.Available, "Realty state already available");
+        idToRealty[registryId].state = RealtyState.Available;
+        emit RealtyStateChanged(registryId, RealtyState.Available);
+    }
+
+    function setNotAvailable(bytes32 registryId) public whenNotPaused() onlyRealtyOwner(registryId) {
+        RealtyState currentState = idToRealty[registryId].state;
+        require(currentState != RealtyState.NotAvailable, "Realty state already not available");
+        idToRealty[registryId].state = RealtyState.NotAvailable;
+        emit RealtyStateChanged(registryId, RealtyState.Available);
+    }
+
+    function _transferOwner(
         address from,
         address to,
-        uint256 registryId
-    ) public onlyOwner {
+        bytes32 registryId
+    ) private {
         require(from != address(0), "Method called with the zero address");
         require(to != address(0), "Method called with the zero address");
         require(ownerOf[registryId] != address(0), "Realty is not registered");
 
         _deregister(registryId);
-
         _register(registryId, to);
 
-        emit RegistrationTransferred(registryId, from, to);
+        idToRealty[registryId].state = RealtyState.NotAvailable;
+
+        emit RealtyTransferred(registryId, from, to);
     }
 
-    function _register(uint256 realtyId, address owner) private {
-        ownerOf[realtyId] = owner;
+    function _register(bytes32 registryId, address owner) private {
+        ownerOf[registryId] = owner;
 
-        uint256[] storage previousRealtyOwned = realtyOwned[owner];
-        uint256 index = previousRealtyOwned.length;
+        bytes32[] storage previousRealtyOwned = realtyOwned[owner];
+        uint index = previousRealtyOwned.length;
 
-        previousRealtyOwned.push(realtyId);
+        previousRealtyOwned.push(registryId);
 
-        indexOfRealty[realtyId] = index;
+        indexOfRealty[registryId] = index;
 
-        emit RegistrationAdded(realtyId, owner);
+        emit RegistrationAdded(registryId, owner);
 
         totalRegistrations++;
     }
 
-    function _deregister(uint256 registryId) private {
+    function _deregister(bytes32 registryId) private {
         address previousOwner = ownerOf[registryId];
-        uint256 index = indexOfRealty[registryId];
+        uint index = indexOfRealty[registryId];
 
-        uint256[] storage ownedAssets = realtyOwned[previousOwner];
+        bytes32[] storage ownedAssets = realtyOwned[previousOwner];
 
         ownedAssets[index] = ownedAssets[ownedAssets.length - 1];
 
