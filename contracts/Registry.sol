@@ -8,13 +8,16 @@ import "@openzeppelin/contracts/utils/Pausable.sol";
 contract Registry is Ownable, Pausable {
     using Address for address;
 
-    event RegistrationAdded(uint registryId, address owner);
-    event RegistrationRemoved(uint registryId);
+    event RegistrationAdded(uint indexed registryId, address owner);
+    event RegistrationRemoved(uint indexed registryId);
 
-    event RealtyTransferred(uint registryId, address from, address to);
-    event RealtyPurchased(uint registryId, uint price, address purchaser);
-    event RealtyPriceUpdated(uint registryId, uint price);
-    event RealtyStateChanged(uint registryId, RealtyState newState);
+    event RealtyTransferred(uint indexed registryId, address from, address to);
+    event RealtyPurchased(uint indexed registryId, uint price, address purchaser);
+    event RealtyPriceUpdated(uint indexed registryId, uint price);
+    event RealtyStateChanged(uint indexed registryId, RealtyState newState);
+
+    event FundsDeposited(uint amount, address indexed sender);
+    event FundsWithdrawn(uint amount, address indexed withdrawer);
 
     mapping(uint => Realty) public idToRealty;
     mapping(uint => address) public ownerOf;
@@ -57,30 +60,16 @@ contract Registry is Ownable, Pausable {
         uint price,
         address owner
     ) public whenNotPaused() onlyOwner() returns (uint) {
-        Realty memory registeredRealty = Realty(
-            streetName,
-            postCode,
-            city,
-            country,
-            realtyType,
-            currentID,
-            price,
-            RealtyState.NotAvailable
-        );
-
-        idToRealty[currentID] = registeredRealty;
-
-        _register(currentID, owner);
+        uint id = _register(streetName, postCode, city, country, realtyType, price, owner, currentID);
 
         currentID++;
 
-        return registeredRealty.registryId;
+        return id;
     }
 
     function deregister(uint registryId) public whenNotPaused() onlyOwner() {
         require(ownerOf[registryId] != address(0), "Realty is not registered");
         _deregister(registryId);
-        emit RegistrationRemoved(registryId);
     }
 
     function purchaseRegistration(uint registryId) public payable whenNotPaused() {
@@ -97,9 +86,12 @@ contract Registry is Ownable, Pausable {
         balance[currentOwner] = balance[currentOwner] + purchasedPrice;
 
         if (msg.value > currentRealty.price) {
+            uint excessValue = msg.value - currentRealty.price;
             balance[purchaser] = balance[purchaser] + msg.value - currentRealty.price;
+            emit FundsDeposited(excessValue, purchaser);
         }
 
+        emit FundsDeposited(purchasedPrice, currentOwner);
         emit RealtyPurchased(registryId, purchasedPrice, purchaser);
     }
 
@@ -117,18 +109,18 @@ contract Registry is Ownable, Pausable {
         return price;
     }
 
-    function setAvailable(uint registryId) public whenNotPaused() onlyRealtyOwner(registryId) {
+    function changeAvailability(uint registryId) public whenNotPaused() onlyRealtyOwner(registryId) {
         RealtyState currentState = idToRealty[registryId].state;
-        require(currentState != RealtyState.Available, "Realty state already available");
-        idToRealty[registryId].state = RealtyState.Available;
-        emit RealtyStateChanged(registryId, RealtyState.Available);
-    }
 
-    function setNotAvailable(uint registryId) public whenNotPaused() onlyRealtyOwner(registryId) {
-        RealtyState currentState = idToRealty[registryId].state;
-        require(currentState != RealtyState.NotAvailable, "Realty state already not available");
-        idToRealty[registryId].state = RealtyState.NotAvailable;
-        emit RealtyStateChanged(registryId, RealtyState.Available);
+        if (currentState == RealtyState.Available) {
+            idToRealty[registryId].state = RealtyState.NotAvailable;
+        } else {
+            idToRealty[registryId].state = RealtyState.Available;
+        }
+
+        RealtyState newState = idToRealty[registryId].state;
+
+        emit RealtyStateChanged(registryId, newState);
     }
 
     function _transferOwner(
@@ -140,30 +132,61 @@ contract Registry is Ownable, Pausable {
         require(to != address(0), "Method called with the zero address");
         require(ownerOf[registryId] != address(0), "Realty is not registered");
 
-        _deregister(registryId);
-        _register(registryId, to);
+        _removeRealtyFromOwned(registryId);
+        _addRealtyToOwned(registryId, to);
+        ownerOf[registryId] = to;
 
         idToRealty[registryId].state = RealtyState.NotAvailable;
 
         emit RealtyTransferred(registryId, from, to);
     }
 
-    function _register(uint registryId, address owner) private {
+    function _register(
+        string memory streetName,
+        string memory postCode,
+        string memory city,
+        string memory country,
+        string memory realtyType,
+        uint price,
+        address owner,
+        uint registryId
+    ) private returns (uint) {
+        Realty memory registeredRealty = Realty(
+            streetName,
+            postCode,
+            city,
+            country,
+            realtyType,
+            currentID,
+            price,
+            RealtyState.NotAvailable
+        );
+
+        idToRealty[currentID] = registeredRealty;
+        _addRealtyToOwned(registryId, owner);
+
         ownerOf[registryId] = owner;
-
-        uint[] storage previousRealtyOwned = realtyOwned[owner];
-        uint index = previousRealtyOwned.length;
-
-        previousRealtyOwned.push(registryId);
-
-        indexOfRealty[registryId] = index;
 
         emit RegistrationAdded(registryId, owner);
 
         totalRegistrations++;
+
+        return registryId;
     }
 
     function _deregister(uint registryId) private {
+        _removeRealtyFromOwned(registryId);
+
+        delete ownerOf[registryId];
+
+        delete idToRealty[registryId];
+
+        emit RegistrationRemoved(registryId);
+
+        totalRegistrations--;
+    }
+
+    function _removeRealtyFromOwned(uint registryId) private {
         address previousOwner = ownerOf[registryId];
         uint index = indexOfRealty[registryId];
 
@@ -172,11 +195,15 @@ contract Registry is Ownable, Pausable {
         ownedAssets[index] = ownedAssets[ownedAssets.length - 1];
 
         ownedAssets.pop();
-
-        delete ownerOf[registryId];
-        delete idToRealty[registryId];
         delete indexOfRealty[registryId];
+    }
 
-        totalRegistrations--;
+    function _addRealtyToOwned(uint registryId, address newOwner) private {
+        uint[] storage previousRealtyOwned = realtyOwned[newOwner];
+        uint index = previousRealtyOwned.length;
+
+        previousRealtyOwned.push(registryId);
+
+        indexOfRealty[registryId] = index;
     }
 }
