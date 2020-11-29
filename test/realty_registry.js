@@ -1,4 +1,4 @@
-const Registry = artifacts.require('Registry');
+const RealtyRegistry = artifacts.require('RealtyRegistry');
 
 const { BN, constants, expectEvent, expectRevert, balance } = require('@openzeppelin/test-helpers');
 
@@ -14,7 +14,7 @@ contract('ResidentialHome', async accounts => {
 	let registry;
 	let tx;
 	beforeEach(async () => {
-		registry = await Registry.new({
+		registry = await RealtyRegistry.new({
 			from: ownerAddress,
 		});
 		tx = await registry.register(
@@ -225,6 +225,10 @@ contract('ResidentialHome', async accounts => {
 					from: userOne,
 					to: userTwo,
 				});
+				expectEvent(tx, 'FundsDeposited', {
+					amount: price,
+					owner: userOne,
+				});
 			});
 			it('should update ownerOf state correctly', async () => {
 				assert.equal(await registry.ownerOf.call(registryId), userTwo);
@@ -309,13 +313,21 @@ contract('ResidentialHome', async accounts => {
 			});
 			it('should allow seller to withdraw their funds', async () => {
 				const tracker = await balance.tracker(userOne);
-				await registry.withdrawFunds({ from: userOne });
+				tx = await registry.withdrawFunds({ from: userOne });
 				assert(tracker.delta(), price);
+				expectEvent(tx, 'FundsWithdrawn', {
+					amount: price,
+					withdrawer: userOne,
+				});
 			});
 			it('should allow purchasee to withdraw their funds', async () => {
 				const tracker = await balance.tracker(userTwo);
-				await registry.withdrawFunds({ from: userTwo });
+				tx = await registry.withdrawFunds({ from: userTwo });
 				assert(tracker.delta(), '100');
+				expectEvent(tx, 'FundsWithdrawn', {
+					amount: '100',
+					withdrawer: userTwo,
+				});
 			});
 		});
 		describe('when there is no balance', () => {
