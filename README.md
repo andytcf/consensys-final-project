@@ -1,10 +1,34 @@
-# Web3 Realty
+# Web3 Realty Registry
 
-Decentralized marketplace for trading property and real estate
+A simple Registry contract that facilitates
 
-## Features
+-   The registration of Realty
+-   The purchase of Realty ownership
+-   The transfer of Realty ownership
 
-1. Addresses can list for sale as well as buy stuff for sale
-2. Sellers own a store front which they can customize
-3. Items can be either listed for auction or for sale
-4. Items are listed as NFT's representing a land
+## User Journey
+
+-   Navigate to the REACT Dapp on IPFS https://ipfs.io/ipfs/QmdXFKKok8i3E26V7mW7ZPPxqDzvMAjXywTwf8Rk8JT9fu
+-   See a list of available trades or
+-   Create a trade listing and deposit your ERC20 Tokens escrowed in the contract
+-   Buyers can select a trade to fulfil and send ETH to the contract and will be send your tokens, you will be sent the ETH
+-   Withdraw your trade listing and have your tokens returned to you
+
+## Run a local development server
+
+Requirements:
+
+-   Truffle
+-   Node Package Manager (npm)
+-   Ganache CLI
+-   MetaMask
+
+Steps:
+
+1. Step One
+
+1. Step Two
+
+Rinkeby:
+
+-   RealtyRegistry:

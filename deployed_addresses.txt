@@ -1,0 +1,8 @@
+RINKEBY
+
+REALTYREGISTRY
+
+etherscan url: https://rinkeby.etherscan.io/address/0x7064B80a13758392171D1A6A6f63a40672938506#code
+
+contract address: 0x7064B80a13758392171D1A6A6f63a40672938506
+
